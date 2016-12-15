@@ -101,6 +101,9 @@ static int nunchuk_i2c_probe(struct i2c_client *client, const struct i2c_device_
 			"unsupported adapter\n");
 		return -EIO;
 	}
+	else{
+		printk(KERN_ALERT "nunchuk_i2c : nunchuk found.\n");
+	}
 
 	nunchuk = kzalloc(sizeof(*nunchuk), GFP_KERNEL);
 	if (nunchuk == NULL) {
@@ -200,6 +203,7 @@ static int __init nunchuk_i2c_init(void)
 			"failed to add I2C driver (%d)\n", err);
 		return err;
 	}
+	printk(KERN_ALERT "nunchuk_i2c : Init ok.\n");	
 
 	return 0;
 }
@@ -213,5 +217,6 @@ module_init(nunchuk_i2c_init);
 module_exit(nunchuk_i2c_exit);
 
 MODULE_AUTHOR("Sergi Granell");
+MODULE_AUTHOR("Andrea Campanella");
 MODULE_DESCRIPTION("Nunchuk I2C input driver");
 MODULE_LICENSE("GPL");
